@@ -470,6 +470,9 @@ namespace System.Net.Http
                 handler = new DecompressionHandler(settings._automaticDecompression, handler);
             }
 
+            // Customization
+            handler = new CustomHandler(handler);
+
             // Ensure a single handler is used for all requests.
             if (Interlocked.CompareExchange(ref _handler, handler, null) != null)
             {
